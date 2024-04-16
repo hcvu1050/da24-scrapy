@@ -6,7 +6,15 @@
 import scrapy
 
 
-class P1Item(scrapy.Item):
+class Project1Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    pass
+
+class ArticleItem(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field ()
+    author_name = scrapy.Field()
+    author_email = scrapy.Field()
+    publish_date = scrapy.Field()
     pass

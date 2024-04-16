@@ -15,10 +15,9 @@ class BookspiderSpider(scrapy.Spider):
                 'url': book.css ('h3 a').attrib['href'], 
                 #url = book.css('h3 a')[0].attrib['href']
             }
-        
         next_page = response.css ('li.next a::attr(href)').get()
         # do the same thing (in yield) for the next page
-        if response.css ('li.next a::attr(href)').get() is not None:
+        if next_page is not None:
             if "catalogue/" in next_page:
                 next_page_url = "https://books.toscrape.com/" + next_page
             else: 
