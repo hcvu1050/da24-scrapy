@@ -7,10 +7,10 @@ class NewsSpider0Spider(scrapy.Spider):
     start_urls = ["https://thanhnien.vn/dong-su-kien/xung-dot-nga-ukraine-165.htm/"]
 
     def parse(self, response):
-        articles = response.css ('div.box-category-item')[:5]
-        for article in articles: 
+        articles = response.css ('div.box-category-item')
+        for article in articles[:5]: 
             rurl = article.css ('::attr(href)').get()
-            article_url = "https://thanhnien.vn/" + rurl
+            article_url = "https://thanhnien.vn" + rurl
             yield response.follow (article_url, callback = self.parse_article)
         # (first page only)
         

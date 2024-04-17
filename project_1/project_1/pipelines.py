@@ -14,7 +14,8 @@ class Project1Pipeline:
         field_names = adapter.field_names()
         for field_name in field_names:
             value = adapter.get(field_name)
-            value = value.strip (" \n")
-            value = re.sub (r'^-?\s*','', value)
-            adapter [field_name] = value
+            if value is not None:
+                value = value.strip (" \n")
+                value = re.sub (r'^-?\s*','', value)
+                adapter [field_name] = value
         return item
