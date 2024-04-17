@@ -65,7 +65,11 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    "project_0.pipelines.Project0Pipeline": 300,
 }
-
+FEEDS = {
+   'booksdata.json': {
+      'format': 'json'
+   }
+} 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
