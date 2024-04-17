@@ -17,4 +17,3 @@ class ArticleItem(scrapy.Item):
     author_name = scrapy.Field()
     author_email = scrapy.Field()
     publish_date = scrapy.Field()
-    pass
