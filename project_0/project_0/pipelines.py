@@ -60,12 +60,14 @@ class Project0Pipeline:
 import mysql.connector
 class SaveToMySQLPipeLine:
     def __init__(self):
+        # establish connection
         self.conn = mysql.connector.connect (
             host= 'localhost',
             user = 'root',
             password = 'Mysql!147456369',
             database = 'books'
         )
+        # creates a cursor object from the connection (serves as an interface)
         self.cur = self.conn.cursor()
         
         ## Create books table if none exists
