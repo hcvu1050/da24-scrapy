@@ -64,6 +64,7 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "project_0.pipelines.Project0Pipeline": 300,
+   "project_0.pipelines.SaveToMySQLPipeLine": 400,
 }
 FEEDS = {
    'booksdata.json': {
