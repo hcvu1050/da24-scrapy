@@ -32,3 +32,44 @@ class Project1Pipeline:
                     # Handle parsing errors
                     pass
         return item
+
+import mysql.connector 
+class SaveToMySQLPipeLine:
+    def __init__(self):
+        self.cnx = mysql.connector.connect(
+            host = 'localhost',
+            user = 'root',
+            password = 'Mysql!147456369',
+            database = 'news'
+        )
+        self.cur = self.cnx.cursor()
+        
+        # create news table if none exists
+        self.cur.execute ("""
+            CREATE TABLE IF NOT EXISTS news(
+                PRIMARY KEY (id),
+                id int NOT NULL auto_increment, 
+                url VARCHAR (225),
+                title VARCHAR (225),
+                author_name VARCHAR (225),
+                author_email VARCHAR(225),
+                publish_date DATETIME
+            )
+        """)
+    def process_item (self, item, spider):
+        self.cur.execute ("""
+            insert into news (url, title, author_name, author_email, publish_date)
+            values (%s,%s,%s,%s,%s)
+        """,
+        params = (item ['url'], 
+        item ['title'], 
+        item ['author_name'], 
+        item ['author_email'], 
+        item ['publish_date'], )
+        )
+        self.cnx.commit ()
+        return item
+    
+    def close_spider (self,spider):
+        self.cur.close()
+        self.cnx.close()
