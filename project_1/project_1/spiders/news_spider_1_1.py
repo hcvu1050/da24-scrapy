@@ -2,7 +2,7 @@ import scrapy, urllib
 from project_1.items import ArticleItem
 
 class NewsSpider0Spider(scrapy.Spider):
-    name = "news_spider_1"
+    name = "news_spider_1.1"
     allowed_domains = ["thanhnien.vn"]
     start_urls = ["https://thanhnien.vn/"]
 
@@ -22,10 +22,10 @@ class NewsSpider0Spider(scrapy.Spider):
         
     def parse_article (self, response):
         article_item = ArticleItem()
-        category = response.meta['category']
-        article_item['category'] = category
         article_item['url'] = response.url
         article_item['title'] = response.css ('h1.detail-title span::text').get()
+        category = response.meta['category']
+        article_item['category'] = category
         article_item['author_name'] = response.css('.detail-author .author-info-top a::text').get()
         article_item['author_email'] = response.css ('.detail-author .author-info-top span.email::text').get()
         article_item['publish_date'] = response.css(' div[data-role="publishdate"]::text').get()
