@@ -18,8 +18,7 @@ class NewsSpider0Spider(scrapy.Spider):
         category = response.url.split('/')[-1].split('.')[0]
         for article_rurl in article_rurls[:3]:
             article_url = urllib.parse.urljoin (response.url, article_rurl)
-            yield response.follow (article_url, callback = self.parse_article,
-                                   meta = {'category' : category})
+            yield response.follow (article_url, callback = self.parse_article, meta = {'category' : category})
         
     def parse_article (self, response):
         article_item = ArticleItem()
