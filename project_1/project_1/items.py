@@ -14,6 +14,8 @@ class Project1Item(scrapy.Item):
 class ArticleItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field ()
+    category = scrapy.Field()
     author_name = scrapy.Field()
     author_email = scrapy.Field()
     publish_date = scrapy.Field()
+    

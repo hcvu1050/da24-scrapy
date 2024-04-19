@@ -51,6 +51,7 @@ class SaveToMySQLPipeLine:
                 id int NOT NULL auto_increment, 
                 url VARCHAR (225),
                 title VARCHAR (225),
+                category VARCHAR (225),
                 author_name VARCHAR (225),
                 author_email VARCHAR(225),
                 publish_date DATETIME
@@ -58,11 +59,12 @@ class SaveToMySQLPipeLine:
         """)
     def process_item (self, item, spider):
         self.cur.execute ("""
-            insert into news (url, title, author_name, author_email, publish_date)
-            values (%s,%s,%s,%s,%s)
+            insert into news (url, title, category, author_name, author_email, publish_date)
+            values (%s,%s,%s,%s,%s, %s)
         """,
         params = (item ['url'], 
         item ['title'], 
+        item ['category'], 
         item ['author_name'], 
         item ['author_email'], 
         item ['publish_date'], )

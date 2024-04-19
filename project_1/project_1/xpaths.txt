@@ -1,0 +1,4 @@
+urls = response.xpath ('//ul[@class = "menu-nav"]/li/a[contains(concat(" ", normalize-space(@class), " "), " nav-link ") and not(contains(@class, "home"))]/@href').extract()
+
+urls = response.xpath ('//*[@id="content"]//h3[contains (@class, "box-title-text")]/a/@href').extract()
+
